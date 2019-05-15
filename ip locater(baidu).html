@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>  
+<head>  
+ <title> New Document </title>  
+ <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />  
+ <script type="text/javascript" src="<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HvcFD3HLGQb40ncItyI91j8sMxMG0GBn"></script>"></script>  
+ </head> 
+<script type="text/javascript">
+ var  massage=null;
+ function userip(ip){  
+        $.getScript("http://ip.taobao.com/service/getIpInfo.php?ip="+ip,  function(){    
+          var prov=data["region"];      
+          var city=data["city"];         
+          var thisAddess=prov+city        
+      jsShow(thisAddess)       
+    }    
+   );    
+}  
+ function jsShow(address){   
+      var geocoder = new BMap.Geocoder();   
+     if(geocoder){         
+       geocoder.getPoint({'address': address }, function(point) {  
+             if (point) {  
+                 var lat = point.lat;            
+                 var lng = point.lng;        
+                 var result=lat+','+lng;               
+                 alert('最后的结果为：'+result);      
+           }         
+    })      
+  } }   
+ function mark(){
+     var ip=$('#info').val();   
+  userip(ip);   
+}    
+</script> 
+ <body>   
+  输入ip地址：<input id="info" type="text">     
+    <input type="button" value="查询 " onclick="mark()"> 
+ </body> 
+</html>
